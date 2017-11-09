@@ -1,0 +1,261 @@
+
+<!-- <script type="text/javascript" src="jsPDF-master/jspdf.js" ></script> -->
+	  <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.2.js"></script>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.js"></script>
+      <script type="text/javascript" src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+      <script type="text/javascript" src="http://html2canvas.hertzen.com/build/html2canvas.js"></script>
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="jsPDF-master/plugins/addhtml.js" ></script>
+<script type="text/javascript" src="jsPDF-master/plugins/canvas.js"></script>
+</head>
+<body>
+<table border="0" cellpadding="1" cellspacing="0" style="width: 750px;">
+	<tbody>
+		<tr>
+			<td rowspan="5" style="text-align: left; vertical-align: top; width: 45%;">
+			<p>{COMPANY.LOGO}</p>
+
+			<p style="font-size:9px"><span style="line-height: 1.8em; font-family: Verdana, Arial, Helvetica, sans-serif;">{COMPANY.HEADER}</span></p>
+			</td>
+			<td width="5%">&nbsp;</td>
+			<td>
+			<table align="right" width="73%">
+				<tbody>
+					<tr>
+						<td style="text-align: center; vertical-align: top; width: 50%; padding: 10px; border: 1px solid; border-radius: 10px;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px;"><strong>{INVOICE.DOCTYPE} n° {INVOICE.DOCNUM}</strong> </span>
+						<div style="font-size: 9px; font-family: Verdana, Arial, Helvetica, sans-serif; text-align: center;padding-top:3px;padding-bottom:8px">Date : {INVOICE.INVDATE}</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<table width="100%">
+				<tbody>
+					<tr>
+						<td style="text-align: left; font-size: 13px; vertical-align: top; padding: 20px; border: 1px solid; border-radius: 10px;"><span style="line-height: 20px; font-family: Verdana, Arial, Helvetica, sans-serif;">{CLIENT.NAME}<br />
+						{CLIENT.CIVILITY} {CLIENT.LASTNAME} {CLIENT.FIRSTNAME}<br />
+						{CLIENT.ADR}<br />
+						{CLIENT.ADR2}<br />
+						{CLIENT.POSTCODE} {CLIENT.TOWN}<br />
+						{CLIENT.COUNTRYID}<br />
+						{CLIENT.INTRACOM}</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+		<tr>
+			<td style="font-size: 12px;">&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+			<td colspan="3"><span style="line-height: 1.8em; font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 9px;">{INVOICE.DESCRIPTION} </span></td>
+		</tr>
+		<tr>
+			<td colspan="3" style="font-size:9px;line-height: 1.8em; font-family: Verdana, Arial, Helvetica, sans-serif; ">&nbsp;</td>
+		</tr>
+	</tbody>
+</table>
+
+<table border="0" cellpadding="3" cellspacing="0" style="width: 750px;line-height:1em;">
+	<thead>
+		<tr style="font-size: 10px;height:25px">
+			<th style="text-align: center; border-left: 1px solid; border-bottom: 1px solid; border-top: 1px solid; width: 8%;line-height:0;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">Réf.</span></th>
+			<th style="text-align: center; border-right: 1px solid; border-left: 1px solid; border-bottom: 1px solid; border-top: 1px solid;line-height:0;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">Désignation</span></th>
+			<th style="text-align: center; border-right: 1px solid; border-bottom: 1px solid; border-top: 1px solid; width: 9%;line-height:0;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">Qté</span></th>
+			<th style="text-align: center; border-right: 1px solid; border-bottom: 1px solid; border-top: 1px solid; width: 10%;line-height:0;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">PU HT</span></th>
+			<th style="text-align: center; border-right: 1px solid; border-bottom: 1px solid; border-top: 1px solid; width: 11%;line-height:0;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">Remise</span></th>
+			<th style="text-align: center; border-right: 1px solid; border-bottom: 1px solid; border-top: 1px solid; width: 7%;line-height:0;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">TVA</span></th>
+			<th style="text-align: center; border-right: 1px solid; border-bottom: 1px solid; border-top: 1px solid; width: 11%;line-height:0;"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">Total HT</span></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr style="font-size: 9px;">
+			<td style="text-align: left; border-left: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{ITEM.AREF}</span><br />
+			<br />
+			{ITEM.PICTURE}</td>
+			<td style="text-align: left; border-left: 1px solid; border-right: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{ITEM.ANAME}</span></td>
+			<td style="text-align: right; border-right: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{ITEM.QUANTITY}{ITEM.CODEUNIT}</span></td>
+			<td style="text-align: right; border-right: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{ITEM.PUHT}</span></td>
+			<td style="text-align: right; border-right: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{ITEM.IREBATE}</span></td>
+			<td style="text-align: right; border-right: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{ITEM.TVA}</span></td>
+			<td style="text-align: right; border-right: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{ITEM.TOTALHT} {INVOICE.CURID}</span></td>
+		</tr>
+	</tbody>
+	<tbody>
+		<tr style="font-size: 12px;">
+			<td style="text-align: left; border-top: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">&nbsp;</span></td>
+			<td style="text-align: left; border-top: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">&nbsp;</span></td>
+			<td style="text-align: left; border-top: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">&nbsp;</span></td>
+			<td style="text-align: left; border-top: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">&nbsp;</span></td>
+			<td style="text-align: left; border-top: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">&nbsp;</span></td>
+			<td style="text-align: left; border-top: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">&nbsp;</span></td>
+			<td style="text-align: right; border-top: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">&nbsp;</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<table border="0" cellpadding="1" cellspacing="0" style="width: 750px;">
+	<tbody>
+		<tr>
+			<td align="left" valign="top" width="60%"><!-- tableau des acomptes -->
+			<table border="0" cellpadding="4" cellspacing="0" style="width: 98%;">
+				<tbody>
+					<tr style="font-size: 14px;">
+						<td align="left" style="border-left: 1px solid; border-right: 1px solid; border-top: 1px solid; border-bottom: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;"><strong>FACTURE(S) D'ACOMPTE LIEE(S)</strong> </span></td>
+					</tr>
+					<tr style="font-size: 14px;">
+						<td align="left" style="border-left: 1px solid; border-right: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">{ADVANCE.ITEM}</span></td>
+					</tr>
+					<tr style="font-size: 14px;">
+						<td align="left" style="border-top: 1px solid; height: 5px;" valign="top">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- tableau des informations relatives au date d'échéance penalité etc.. -->
+
+			<table border="0" cellpadding="0" cellspacing="0" style="line-height:1em" width="100%">
+				<tbody>
+					<tr>
+						<td align="left" valign="top" width="90%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">{COMPANY.CGA}</span></td>
+					</tr>
+					<tr>
+						<td align="left" valign="top" width="90%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">Date d'échéance : {INVOICE.PAIEDATE} ({INVOICE.PAYTERMID})</span></td>
+					</tr>
+					<tr>
+						<td align="left" valign="top" width="90%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">Date d'exécution : {INVOICE.EXECDATE}</span></td>
+					</tr>
+					<tr>
+						<td align="left" valign="top" width="90%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">Taux de pénalité : {INVOICE.PENALITY}</span></td>
+					</tr>
+					<tr>
+						<td align="left" valign="top" width="90%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">{INVOICE.NOINDEMNITY}</span></td>
+					</tr>
+					<tr>
+						<td align="left" valign="top" width="90%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">Taux d'escompte : {INVOICE.ESCOMPTE}</span></td>
+					</tr>
+					<tr>
+						<td align="left" valign="top" width="90%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">Mode de paiement : {INVOICE.PAYTYPEID}</span></td>
+					</tr>
+					<tr>
+						<td align="left" valign="top" width="90%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">Terme de la garantie : {INVOICE.RETENTION_DATE}</span></td>
+					</tr>
+					<tr>
+						<td align="left" valign="top" width="90%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 9px;">&nbsp;</span></td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+			<td align="left" valign="top" width="8%">&nbsp;</td>
+			<td colspan="3" valign="top" width="32%"><!-- tableau des totaux -->
+			<table border="0" cellpadding="3" cellspacing="0" style="text-align: left; border-left: 1px solid; border-right: 1px solid; border-bottom: 1px solid; border-top: 1px solid;" width="100%">
+				<tbody>
+					<tr style="font-size: 11px;">
+						<td align="left" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">Sous Total HT</span></td>
+						<td style="text-align: right;" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{INVOICE.ITEMTOTALHT} {INVOICE.CURID}</span></td>
+					</tr>
+					<tr style="font-size: 11px;">
+						<td align="left" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">Remise globale</span></td>
+						<td style="text-align: right;" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{INVOICE.REBATE}</span></td>
+					</tr>
+					<tr style="font-size: 11px;">
+						<td align="left" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>Total HT</strong></span></td>
+						<td style="text-align: right;" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>{INVOICE.TOTALHT} {INVOICE.CURID}</strong></span></td>
+					</tr>
+					<tr style="font-size: 11px;">
+						<td align="left" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">Total TVA {TVA.TVA} %</span></td>
+						<td style="text-align: right;" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{TVA.TOTALTVA} {INVOICE.CURID}</span></td>
+					</tr>
+					<tr style="font-size: 11px;">
+						<td align="left" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>Total TTC</strong> </span></td>
+						<td style="text-align: right;" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>{INVOICE.TOTALTTC} {INVOICE.CURID}</strong> </span></td>
+					</tr>
+					<tr style="font-size: 11px;">
+						<td align="left" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>Retenue de garantie ({INVOICE.RETENTION_PERCENT}%)</strong> </span></td>
+						<td style="text-align: right;" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>{INVOICE.RETENTION_AMOUNT} {INVOICE.CURID}</strong> </span></td>
+					</tr>
+					<tr style="font-size: 10px;">
+						<td align="left" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">Acompte</span></td>
+						<td style="text-align: right;" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;">{INVOICE.ADVANCE} {INVOICE.CURID}</span></td>
+					</tr>
+					<tr style="font-size: 11px;">
+						<td align="left" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>Total réglé</strong></span></td>
+						<td style="text-align: right;" valign="top" width="50%"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>{INVOICE.PAIETOTAL} {INVOICE.CURID}</strong></span></td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- tableau du total net a payer -->
+
+			<table border="0" cellpadding="5" cellspacing="0" style="text-align: left;" width="100%">
+				<tbody>
+					<tr style="font-size: 12px;">
+						<td align="left" valign="top" width="45%">&nbsp;</td>
+						<td style="text-align: right;" valign="top">&nbsp;</td>
+					</tr>
+					<tr style="font-size: 12px;">
+						<td style="text-align: left; border-left: 1px solid; border-bottom: 1px solid; border-top: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>NET A PAYER</strong> </span></td>
+						<td style="text-align: right; border-right: 1px solid; border-bottom: 1px solid; border-top: 1px solid;" valign="top"><span style="font-family: Verdana, Arial, Helvetica, sans-serif;"><strong>{INVOICE.TOTALNET} {INVOICE.CURID}</strong> </span></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div style="font-family: Verdana, Arial, Helvetica, sans-serif;text-align: left;font-size:9px;padding-top:7px">{INVOICE.NOTVALIST}</div>
+			</td>
+		</tr>
+		<tr>
+			<td align="left" valign="top">&nbsp;</td>
+			<td align="left" valign="top">&nbsp;</td>
+			<td colspan="3" valign="top">&nbsp;</td>
+		</tr>
+		<tr>
+			<td align="left" colspan="5" valign="top"><span style="line-height: 1.8em; font-family: Verdana, Arial, Helvetica, sans-serif;font-size: 9px;">{INVOICE.COMMENT}</span></td>
+		</tr>
+	</tbody>
+</table>
+&nbsp;
+
+<div style="text-align: center;"><br />
+{INVOICE.NBPAGERIGHT}</div>
+<a href="javascript:genPDF()">Telecharger PDF</a>
+
+</body>
+
+<script type="text/javascript">
+function genPDF() {
+	var doc = new jsPDF();
+	doc.setFontSize(90);
+	margins = {  top: 80,  bottom: 60,  left: 40,  width: 522};
+doc.fromHTML($('body').get(0), 15, 15, {
+	'width': 500
+	
+});
+	
+	doc.save('Test.pdf');
+}
+	
+</script>
+</html>
+
+
+
